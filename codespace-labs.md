@@ -1,7 +1,7 @@
 # Containers Fundamentals
 ## An overview of Containers, Docker, and Kubernetes
 ## Session labs for codespace only
-## Revision 1.1 - 08/09/24
+## Revision 1.2 - 01/01/25
 
 **Startup IF NOT ALREADY DONE!**
 ```
@@ -284,7 +284,7 @@ shortcut using "get events" that we can do too.
 k get events | grep web | grep image
 ```
 
-9. Remember that we tagged the images for our local registry as localhost:5000/roar-db:v1 and localhost:5000/roar-web:v1. But if you scroll back up and look at the “Image” property in the describe output, you’ll see that it actually specifies “localhost:5000/roar-db-v1”.
+9. Remember that we tagged the images for our local registry as localhost:5000/roar-db:v1 and localhost:5000/roar-web:v1. But if you scroll back up and look at the “Image” name in the output from step 8, you’ll see that it actually specifies “localhost:5000/roar-db-v1”.
 
 10. We can change the existing deployment to see if this fixes things. But first, let's
 setup a watch in a separate terminal so we can see how Kubernetes changes
@@ -298,7 +298,7 @@ k get -n roar pods -w
 
 12. Go to the open roar-complete.yaml file (or open it again if needed [**roar-k8s/roar-complete.yaml**](./roar-k8s/roar-complete.yaml).
 
-13. Change lines 19 and 70 to use **.v1** instead of **-v1** in the file.  
+13. Change lines 19 and 70 to use **:v1** instead of **-v1** in the file.  
 
 ![Editing the file](./images/cazclass6.png?raw=true "Editing the file")
 ![Editing the file](./images/cazclass7.png?raw=true "Editing the file")
