@@ -22,11 +22,11 @@ This will run for a while to get everything ready.
 
 **3. Run the following commands in the codespace's terminal (This will take several minutes to run...):**
 
-      ```
-      ./setup.sh
-      ```
+```
+./setup.sh
+```
 
-    - The output should look similar to the following.
+The output should look similar to the following.
 
 ```console
 😄  minikube v1.33.1 on Ubuntu 20.04 (docker/amd64)
