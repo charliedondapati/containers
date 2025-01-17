@@ -57,7 +57,7 @@ You can view the list of minikube maintainers at: https://github.com/kubernetes/
 
 ## Labs
 
-**4. After the codespace has started, open the labs document by going to the file tree on the left, find the file named *codespace-labs.md*, right-click on it, and open it with the *Preview* option.)**
+**4. After the codespace has started, open the labs document either in a separate browser/tab or in the codespace itself. To open directly in the codespace, go to the file tree on the left, find the file named *codespace-labs.md*, right-click on it, and open it with the *Preview* option.**
 
 ![Labs doc preview in codespace](./images/cf03.png?raw=true "Labs doc preview in codespace")
 
@@ -73,7 +73,7 @@ To do this, when logged in to GitHub, go to https://github.com/settings/codespac
 
 **NOTE: If your codespace times out and you need to reopen it**
 
-1. Go to https://github.com/<your github userid>/codespaces
+1. Go to https://github.com/YOUR-GITHUB-USERID/codespaces
 2. Find the codespace in the list, right-click, and select *Open in browser*
 3. After the codespace opens up, run the script *minikube start* in the terminal. (You might need to run this more than once if restarting a codespace depending on timing.)
 ```
