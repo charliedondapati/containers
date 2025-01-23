@@ -1,7 +1,7 @@
 # Containers Fundamentals
 ## An overview of Containers, Docker, and Kubernetes
 ## Session labs 
-## Revision 2.2 - 01/23/25
+## Revision 2.3 - 01/23/25
 
 **Startup IF NOT ALREADY DONE!**
 ```
@@ -117,7 +117,8 @@ docker ps | grep roar
 
 **Purpose: While our app runs fine here, it’s helpful to know about a few commands that we can use to learn more about our containers if there are problems.**
 
-1. Let’s get a description of all of the attributes of our containers. For these commands, use the same 3 character container id from the web container that you recorded from Lab 2, step 5.
+1. Let’s get a description of all of the attributes of our containers. For these commands, use the same 3 character container id from the web container that you recorded from Lab 2, step 5 and run them in the second terminal window (the one that is not running the docker compose as that needs to stay running during these).
+   
 Run the inspect command. Take a moment to scroll around the output.
 
 ```
