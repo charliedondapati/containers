@@ -559,46 +559,40 @@ echo $TOKEN
 k config set-credentials cs-user --token=$TOKEN
 ```
 
-4. Next, add a context that we can set to use the new service account automatically.
+4. Next, add a new context (that we can set with the new service account automatically) to the ones Kubernetes knows and can use.
 
 ```
 k config set-context cs-user-context --cluster=minikube --user=cs-user
 ```
 
-5. Add your new context to the ones Kubernetes knows and can use.
-
-```
-k config set-context cs-user-context --cluster=minikube --user=cs-user
-```
-
-6. Switch to the new context that authenticates as your service account.
+5. Switch to the new context that authenticates as your service account.
 
 ```
 k config use-context cs-user-context
 ```
 
-7. See if we can use the new service account by trying to list the pods in the *default* namespace.  You should see a *Forbidden* error because your service account hasn't been assigned any RBAC roles that include the *get pods* permission. After the command fails, switch back to your original context (second command) to create the role and rolebinding objects we'll need in the remaining steps.
+6. See if we can use the new service account by trying to list the pods in the *default* namespace.  You should see a *Forbidden* error because your service account hasn't been assigned any RBAC roles that include the *get pods* permission. After the command fails, switch back to your original context (second command) to create the role and rolebinding objects we'll need in the remaining steps.
 
 ```
 k get pods 
 k config use-context minikube
 ```
 
-8. We need to have the corresponding role for our *cs-role* service account. The role manifest has a *rules* field which lists the API groups, resource types, and verbs that holders of the role can use. The manifest is already created for you. You can open it and take a look at its contents by clicking on [**roar-k8s/role.yaml**](./roar-k8s/role.yaml) or using the command below. After you are done looking at it, go ahead and apply it.
+7. We need to have the corresponding role for our *cs-role* service account. The role manifest has a *rules* field which lists the API groups, resource types, and verbs that holders of the role can use. The manifest is already created for you. You can open it and take a look at its contents by clicking on [**roar-k8s/role.yaml**](./roar-k8s/role.yaml) or using the command below. After you are done looking at it, go ahead and apply it.
 
 ```
 code role.yaml
 k apply -f role.yaml
 ```
 
-9. We also need to have the corresponding manifest to do the *role binding* - connecting the role to the service account. The manifest is already created for you. You can open it and take a look at its contents by clicking on [**roar-k8s/role-binding.yaml**](./roar-k8s/role-binding.yaml) or using the command below. After you are done looking at it, go ahead and apply it.
+8. We also need to have the corresponding manifest to do the *role binding* - connecting the role to the service account. The manifest is already created for you. You can open it and take a look at its contents by clicking on [**roar-k8s/role-binding.yaml**](./roar-k8s/role-binding.yaml) or using the command below. After you are done looking at it, go ahead and apply it.
 
 ```
 code role-binding.yaml
 k apply -f role-binding.yaml
 ```
 
-10. With the role and role binding in place, the service account should now be able to interact with the pods in the *default* namespace. Swithc back to the context that authenticates as the service account user and try the command to *get pods* again.
+9. With the role and role binding in place, the service account should now be able to interact with the pods in the *default* namespace. Swithc back to the context that authenticates as the service account user and try the command to *get pods* again.
 
 ```
 k config user-context cs-user
