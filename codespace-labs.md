@@ -1,7 +1,7 @@
 # Containers Fundamentals
 ## An overview of Containers, Docker, and Kubernetes
 ## Session labs 
-## Revision 2.4 - 01/23/25
+## Revision 2.5 - 01/23/25
 
 **Startup IF NOT ALREADY DONE!**
 ```
@@ -542,10 +542,10 @@ k delete pod -l app=roar-db
     
 17.	After it is recreated,  refresh the screen and notice that the new record is still there!
 
-18.	To save on system resources, delete the *roar* namespace.
+18.	In preparation for the next lab, reset the default namespace back to *default* instead of *roar*.
 
 ```
-k delete ns roar
+k config set-context --current --namespace=default
 ```
 
 <p align="center">
