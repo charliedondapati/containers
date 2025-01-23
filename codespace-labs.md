@@ -597,10 +597,15 @@ code role-binding.yaml
 k apply -f role-binding.yaml
 ```
 
-10. With the role and role binding in place, the service account should now be able to interact with the pods in the *default* namespace. Swithc back to the context that authenticates as the service account user and try the command to *get pods* again.
+10. With the role and role binding in place, the service account should now be able to interact with the pods in the *default* namespace. Switch back to the context that authenticates as the service account user.
 
 ```
-k config user-context cs-user
+k config use-context cs-user-context
+```
+
+11. Now you can try the command again to get the pods. Note that success here is NOT getting an error/forbidden message.
+
+```
 k get pods
 ```
 
