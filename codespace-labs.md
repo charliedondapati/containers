@@ -562,7 +562,7 @@ k config set-credentials cs-user --token=$TOKEN
 4. Next, add a context that we can set to use the new service account automatically.
 
 ```
-k config set-credentials cs-user --token=$TOKEN
+k config set-context cs-user-context --cluster=minikube --user=cs-user
 ```
 
 5. Add your new context to the ones Kubernetes knows and can use.
