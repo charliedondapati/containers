@@ -1,7 +1,7 @@
 # Containers Fundamentals
 ## An overview of Containers, Docker, and Kubernetes
 ## Session labs for codespace only
-## Revision 1.3 - 01/18/25
+## Revision 2.0 - 01/22/25
 
 **Startup IF NOT ALREADY DONE!**
 ```
@@ -532,6 +532,79 @@ k delete pod -l app=roar-db
 ```
 k delete ns roar
 ```
+
+<p align="center">
+**[END OF LAB]**
+</p>
+
+**Bonus/Optional Lab 7 – Configuring namespace access for service accounts with RBAC**
+**Purpose: In this lab, we’ll see how to create a new service account and give it permissions in the cluster via RBAC.**
+
+1.	Let's create a new service account in the codespace to use in demonstrating how RBAC works.
+
+```
+k create serviceaccount cs-demo
+```
+
+2. Now, we need to create an authorization token for the new service account. We can use a K8s command to dump this into an environment variable. After creating it, you can look at the token if you wish.
+
+```
+TOKEN=$(k create token cs-user)
+echo $TOKEN
+```
+
+3. Add a new kubectl context that lets you authenticate as the service account. First, add the service account as a credential in the Kubeconfig file.
+
+```
+k config set-credentials cs-user --token=$TOKEN
+```
+
+4. Next, add a context that we can set to use the new service account automatically.
+
+```
+k config set-credentials cs-user --token=$TOKEN
+```
+
+5. Add your new context to the ones Kubernetes knows and can use.
+
+```
+k config set-context cs-user-context --cluster=minikube --user=cs-user
+```
+
+6. Switch to the new context that authenticates as your service account.
+
+```
+k config use-context cs-user-context
+```
+
+7. See if we can use the new service account by trying to list the pods in the *default* namespace.  You should see a *Forbidden* error because your service account hasn't been assigned any RBAC roles that include the *get pods* permission. After the command fails, switch back to your original context (second command) to create the role and rolebinding objects we'll need in the remaining steps.
+
+```
+k get pods 
+k config use-context minikube
+```
+
+8. We need to have the corresponding role for our *cs-role* service account. The role manifest has a *rules* field which lists the API groups, resource types, and verbs that holders of the role can use. The manifest is already created for you. You can open it and take a look at its contents by clicking on [**roar-k8s/role.yaml**](./roar-k8s/role.yaml) or using the command below. After you are done looking at it, go ahead and apply it.
+
+```
+code role.yaml
+k apply -f role.yaml
+```
+
+9. We also need to have the corresponding manifest to do the *role binding* - connecting the role to the service account. The manifest is already created for you. You can open it and take a look at its contents by clicking on [**roar-k8s/role-binding.yaml**](./roar-k8s/role-binding.yaml) or using the command below. After you are done looking at it, go ahead and apply it.
+
+```
+code role-binding.yaml
+k apply -f role-binding.yaml
+```
+
+10. With the role and role binding in place, the service account should now be able to interact with the pods in the *default* namespace. Swithc back to the context that authenticates as the service account user and try the command to *get pods* again.
+
+```
+k config user-context cs-user
+k get pods
+```
+
 
 <p align="center">
 **[END OF LAB]**
