@@ -543,7 +543,7 @@ k delete ns roar
 1.	Let's create a new service account in the codespace to use in demonstrating how RBAC works.
 
 ```
-k create serviceaccount cs-demo
+k create serviceaccount cs-user
 ```
 
 2. Now, we need to create an authorization token for the new service account. We can use a K8s command to dump this into an environment variable. After creating it, you can look at the token if you wish.
