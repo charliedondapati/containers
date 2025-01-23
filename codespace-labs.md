@@ -1,7 +1,7 @@
 # Containers Fundamentals
 ## An overview of Containers, Docker, and Kubernetes
 ## Session labs 
-## Revision 2.3 - 01/23/25
+## Revision 2.4 - 01/23/25
 
 **Startup IF NOT ALREADY DONE!**
 ```
@@ -288,7 +288,7 @@ k get pods --show-labels
 k logs -l app=roar-web
 ```
 
-8. The output here confirms what is wrong – notice the part on “trying and failing to
+8. **The output here is the error message from the logs, not from running the command.** The message in the logs confirms what is wrong – notice the part on “trying and failing to
 pull image” or "image can't be pulled". We need to get more detail though - such
 as the exact image name. We could use a describe command, but there's a
 shortcut using "get events" that we can do too.
