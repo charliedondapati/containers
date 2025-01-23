@@ -1,7 +1,7 @@
 # Containers Fundamentals
 ## An overview of Containers, Docker, and Kubernetes
-## Session labs for codespace only
-## Revision 2.0 - 01/22/25
+## Session labs 
+## Revision 2.1 - 01/23/25
 
 **Startup IF NOT ALREADY DONE!**
 ```
@@ -58,6 +58,10 @@ docker tag roar-db localhost:5000/roar-db:v1
 ```
 docker images | grep roar
 ```
+<p align="center">
+**[END OF LAB]**
+</p>
+</br></br></br>
 
 **Lab 2 - Composing images together**
 
@@ -104,6 +108,10 @@ docker ps | grep roar
 
 10. Switch back to the Terminal tab for the next lab.
 
+<p align="center">
+**[END OF LAB]**
+</p>
+</br></br></br>
 
 **Lab 3 – Debugging Docker Containers**
 
@@ -201,6 +209,10 @@ docker rm <container id for roar-web>
 docker rm <container id for roar-db>
 ```
 
+<p align="center">
+**[END OF LAB]**
+</p>
+</br></br></br>
 
 **Lab 4 - Exploring and Deploying into Kubernetes**
 
@@ -319,6 +331,7 @@ be terminated and removed. You can stop the watch command in that terminal via C
 <p align="center">
 **[END OF LAB]**
 </p>
+</br></br></br>
 
 **Lab 5 - Working with Kubernetes secrets and configmaps**
 
@@ -429,6 +442,7 @@ k apply -f roar-complete.yaml
 <p align="center">
 **[END OF LAB]**
 </p>
+</br></br></br>
 
 **Lab 6 – Working with persistent storage – Kubernetes Persistent Volumes and Persistent Volume Claims**
 **Purpose: In this lab, we’ll see how to connect pods with external storage resources via persistent volumes and persistent volume claims.**
@@ -536,6 +550,7 @@ k delete ns roar
 <p align="center">
 **[END OF LAB]**
 </p>
+</br></br></br>
 
 **Bonus/Optional Lab 7 – Configuring namespace access for service accounts with RBAC**
 **Purpose: In this lab, we’ll see how to create a new service account and give it permissions in the cluster via RBAC.**
