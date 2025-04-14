@@ -5,5 +5,17 @@
     "memory": "8gb",
     "storage": "32gb"
   },
-  "postCreateCommand": "echo alias k=kubectl >> ~/.bash_aliases"
+  "customizations": {
+    "vscode": {
+        "settings": {
+            "workbench.startupEditor": "readme", 
+            // Open Markdown files in preview mode by default
+            "workbench.editorAssociations": {
+                "*.md": "vscode.markdown.preview.editor"
+            }
+        }
+    } 
+  },
+  "postCreateCommand": "echo alias k=kubectl >> ~/.bash_aliases && echo 'code --reuse-window --goto codespace-labs.md' >> ~/.bashrc && source ~/.bashrc"
 }
+
