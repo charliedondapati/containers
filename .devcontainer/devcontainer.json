@@ -16,6 +16,7 @@
         }
     } 
   },
-  "postCreateCommand": "echo alias k=kubectl >> ~/.bash_aliases && echo 'code --reuse-window --goto codespace-labs.md' >> ~/.bashrc && source ~/.bashrc"
+  "postCreateCommand": "echo alias k=kubectl >> ~/.bash_aliases",
+  "postStartCommand" : "bash ./setup2.sh"
 }
 
