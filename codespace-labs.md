@@ -1,14 +1,14 @@
 # Containers Fundamentals
 ## An overview of Containers, Docker, and Kubernetes
 ## Session labs 
-## Revision 2.6 - 04/16/25
+## Revision 2.7 - 04/16/25
 
 **NOTES**
 1. Startup IF NOT ALREADY DONE!
 ```
 ./setup.sh
 ```
-2. Adjust codespace timeout via README instructions. If your codespace does time out, run *minikube start* after restarting it.
+2. Adjust codespace timeout via README instructions. If your codespace does time out, just run the *setup.sh* script again after restarting it.
 
 3. To copy and paste in the codespace, Chrome is recommended. You may need to use keyboard commands - CTRL-C and CTRL-V.**
 
@@ -17,7 +17,7 @@
 **Lab 1 - Building Docker Images**
 
 **Purpose: In this lab, we’ll see how to build Docker images from Dockerfiles.**
-<br>
+<br><br>
 
 1. Switch into the directory for our docker work.
 
@@ -80,6 +80,7 @@ docker images | grep roar
 
 **Purpose: In this lab, we'll see how to make multiple containers execute together with docker compose and use the docker inspect command to get information to see our running app.**
 <br><br>
+
 1. Take a look at the docker compose file for our application and see if you can understand some of what it is doing. Click on the link: [**roar-docker/docker-compose.yml**](./roar-docker/docker-compose.yml) 
 <br>
 
@@ -143,8 +144,8 @@ Run the inspect command. Take a moment to scroll around the output.
 ```
 docker inspect <container id>
 ```
-
 <br>
+
 2. Now, let’s look at the logs from the running container. Scroll around again and look at the output.
 
 ```
@@ -249,9 +250,9 @@ docker rm <container id for roar-db>
 **Purpose: In this lab, we’ll start to learn about Kubernetes and its object types,
 such as nodes and namespaces. We’ll also deploy a version of our app that has
 had Kubernetes yaml files created for it.**
-
 <br><br>
-
+**NOTE**: *If you get to this point and something may have gone wrong in previous labs such that the images are not in the local registry, there is a script you can run *restore-images.sh* to recreate the images and push them automatically. You only need to do this IF something didn't go right with getting the images built or pushed in the previous labs and you don't want to backtrack.*
+<br><br>
 1. Before we can deploy our application into Kubernetes, we need to have
 appropriate Kubernetes manifest yaml files for the different types of k8s objects
 we want to create. These can be separate files, or they can be combined. For
@@ -382,7 +383,6 @@ be terminated and removed. You can stop the watch command in that terminal via C
 **Lab 5 - Working with Kubernetes secrets and configmaps**
 
 **Purpose:  In this lab we’ll get some practice storing secure and insecure information in a way that is accessible to k8s but not stored in the usual deployment files.**
-
 <br><br>
 1.	In the open file roar-complete.yaml from the last lab [**roar-k8s/roar-complete.yaml**](./roar-k8s/roar-complete.yaml), look at the "env" block that starts at line 61. We really shouldn't be exposing usernames and passwords in here.  
 
@@ -502,7 +502,6 @@ k apply -f roar-complete.yaml
 **Lab 6 – Working with persistent storage – Kubernetes Persistent Volumes and Persistent Volume Claims**
 **Purpose: In this lab, we’ll see how to connect pods with external storage resources via persistent volumes and persistent volume claims.**
 <br><br>
-
 1.	While we can modify the containers in pods running in the Kubernetes namespaces, we need to be able to persist data outside of them.  This is because we don’t want the data to go away when something happens to the pod.   Let’s take a quick look at how volatile data is when just stored in the pod.
 
 <br>
@@ -627,7 +626,6 @@ k config set-context --current --namespace=default
 **Lab 7 – Configuring namespace access for service accounts with RBAC**
 **Purpose: In this lab, we’ll see how to create a new service account and give it permissions in the cluster via RBAC.**
 <br><br>
-
 1.	Let's create a new service account in the codespace to use in demonstrating how RBAC works.
 
 ```
@@ -719,18 +717,10 @@ k config use-context minikube
 </p>
 <br><br><br>
 
-**Optional Lab 8 - Monitoring**
+**Bonus/Optional Lab 8 - Monitoring**
 
 **Purpose:  This lab will introduce you to a few of the ways we can monitor what is happening in our Kubernetes cluster and objects.**
-
-**NOTE: If you run into any issues where the system seems to be hanging and not responding, it may be due to a high cpu load from previous labs. You should be able to fix this via the commands below.**
-
-```
-minikube stop
-minikube start
-```
-
-<br>
+<br><br>
 1. In order to have the pieces setup for this lab, change to the *monitoring* directory.
 
 ```
