@@ -17,6 +17,5 @@
     } 
   },
   "postCreateCommand": "echo alias k=kubectl >> ~/.bash_aliases",
-  "postStartCommand" : "bash ./setup2.sh"
 }
 
