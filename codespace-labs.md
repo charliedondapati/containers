@@ -707,10 +707,153 @@ k config use-context cs-user-context
 k get pods
 ```
 
+<br>
+12. In preparation for the next lab, switch back to the minikube context!
+
+```
+k config use-context minikube
+```
 
 <p align="center">
 **[END OF LAB]**
 </p>
+<br><br><br>
+
+**Optional Lab 8 - Monitoring**
+
+**Purpose:  This lab will introduce you to a few of the ways we can monitor what is happening in our Kubernetes cluster and objects.**
+
+**NOTE: If you run into any issues where the system seems to be hanging and not responding, it may be due to a high cpu load from previous labs. You should be able to fix this via the commands below.**
+
+```
+minikube stop
+minikube start
+```
+
+<br>
+1. In order to have the pieces setup for this lab, change to the *monitoring* directory.
+
+```
+cd /workspaces/containers/monitoring
+```
+
+<br>
+2.	 To setup the monitoring pieces in the cluster, run the script *setup-monitoring.sh*. This will take a bit to complete.
+
+```
+./setup-monitoring.sh
+```
+
+
+<br>   
+3.	First, let’s look at the built-in Kubernetes dashboard. You  can use a simple port-forward to access but then we will need to make one tweak for the port. First do the port forward.
+
+```
+k port-forward -n kubernetes-dashboard svc/kubernetes-dashboard :443 &
+```
+
+<br>
+4.	If you look at this in the browser, it will have an error. To fix this, go to the PORTS tab, right-click on the line with "kubernetes-dashboard" in it, click "Change Port Protocol" from the popup menu and then select "HTTPS" from the options. Refresh the browser and you should be able to see the application.
+
+![changing port protocol](./images/k8sdev20.png?raw=true "Changing the Port Protocol")
+
+<br>
+5.	In the browser, you'll see a login screen.  We'll use the token option to get in.  Switch back to the TERMINAL tab and run the command below and then copy the output.
+
+```
+k -n kubernetes-dashboard create token admin-user
+```
+
+<br>
+6.	At the login screen, select "Token" as the access method, and paste the token you got from the step above.
+
+![logging in to the dashboard](./images/k8sdev22.png?raw=true "Logging in to the dashboard")   
+ 
+<br>
+7.	The dashboard for our cluster will now show. You'll probably first see a "404" message. This is because you don't have Kubernetes objects selected to look at.  You can select "All namespaces" at the top, choose a K8s objects on the left (such as "Pods"), and explore.
+
+![working in the dashboard](./images/k8sdev21.png?raw=true "Working in the dashboard")
+
+<br> 
+8.	Now let’s look at some metrics gathering with a tool called Prometheus. First, we will do a port-forward to access the Prometheus UI in our browser.
+
+```
+kubectl port-forward -n monitoring svc/monitoring-kube-prometheus-prometheus :9090 &
+```
+
+<br>
+9.	Open this in the browser via the port button. You should see a screen like the one below:
+
+![prometheus opening screen](./images/k8sdev23.png?raw=true "Prometheus opening screen")
+
+<br>
+10.	Prometheus comes with a set of built-in metrics.  Just start typing in the “Expression” box.  For example, let’s look at one called “apiserver_request_total”.  Just start typing that in the Expression box. After you begin typing, you can select it in the list that pops up. After you have got it in the box, click on the blue “Execute” button.
+
+![prometheus metrics entry](./images/k8sdev24.png?raw=true "Prometheus metrics entry") 
+
+<br>
+11.	Now, scroll down and look at the "Table" list output (assuming you have the Table tab selected).
+
+![prometheus console output](./images/k8sdev25.png?raw=true "Prometheus console output")
+
+<br>
+12.	Next, click on the blue “Graph” link next to “Console” and take a look at the graph of responses.  Note that you can hover over points on the graph to get more details. You can click "Execute" again to refresh.
+
+![prometheus graph view](./images/k8sdev26.png?raw=true "Prometheus graph view")
+
+<br> 
+13.	You can also see the metrics being automatically exported for the node. Do a port forward on the node-exporter service and then open via the port as usual.
+
+```
+
+kubectl port-forward -n monitoring svc/monitoring-prometheus-node-exporter 9100 &
+
+```
+Click on the **Metrics** link.
+
+![metrics view](./images/cazclass18.png?raw=true "Metrics view")
+
+<br>
+14.	 Now let’s change the query to show the rate of apiserver total requests over 1 minute intervals.  Go back to the main Prometheus screen.  In the query entry area, change the text to be what is below and then click on the Execute button to see the results in the graph.
+
+```
+
+rate(apiserver_request_total[1m])
+
+```
+![prometheus rate query](./images/k8sdev27.png?raw=true "Prometheus rate query")
+
+<br>
+15.	Finally, let’s take a look at Grafana. First you need to get the default Grafana password. You can get that by running the *./get-grafana-initial-pw.sh* script in the *monitoring* directory.
+
+<br>
+16.	 Then you can do a port forward for the "monitoring-grafana" service.  
+
+```
+
+k port-forward -n monitoring svc/monitoring-grafana :80  & 
+
+```
+
+<br>
+17.	Go to the browser tab. Login with username *admin* and the initial password (*prom-operator*).
+
+![grafana login](./images/k8sdev28.png?raw=true "Grafana login")
+
+<br>
+18.	  Click on the magnifying glass for "search” (left red circle in figure below). This will provide you with a list of built-in graphs you can click on as demos and explore.
+
+![grafana search](./images/k8sdev29.png?raw=true "Grafana search")  
+
+<br>
+19.	 Click on one of the links to view one of the demo graphs (such as the "Kubernetes / API server" one) shown in the figure below). You can then explore others by discarding/saving this one and going back to the list and selecting others.
+
+![grafana demo graph](./images/k8sdev29.png?raw=true "Grafana demo graph") 
+
+<p align="center">
+**[END OF LAB]**
+</p>
+
 
 <p align="center">
 (c) 2025 Brent Laster and Tech Skills Transformations
