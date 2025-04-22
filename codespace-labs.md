@@ -147,7 +147,7 @@ docker ps | grep roar
 **Purpose: While our app runs fine here, it’s helpful to know about a few commands that we can use to learn more about our containers if there are problems.**
 <br><br>
 
-1. Let’s get a description of all of the attributes of our containers. For these commands, use the same 3 character container id from the web container that you recorded from Lab 2, step 5 and run them in the second terminal window (the one that is not running the docker compose as that needs to stay running during these).
+1. (We're back in the second terminal with the compose still running in the first terminal.) Let’s get a description of all of the attributes of our containers. For these commands, use the same 3 character container id from the web container that you recorded from Lab 2, step 5 and run them in the second terminal window (the one that is not running the docker compose as that needs to stay running during these).
    
 Run the inspect command. Take a moment to scroll around the output.
 
@@ -187,6 +187,7 @@ docker ps | grep roar-db
 5. Make a note of the first 3 characters of the container id (first column) for the db
 container (row with **roar-db** in it). You’ll need those for the next step.
 
+![Container id for db container](./images/cazclass20.png?raw=true "Container id for db container")
 <br>
 
 6. Now, let’s exec inside the container so we can look at the actual database.
