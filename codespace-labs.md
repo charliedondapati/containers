@@ -1,7 +1,7 @@
 # Containers Fundamentals
 ## An overview of Containers, Docker, and Kubernetes
 ## Session labs 
-## Revision 2.7 - 04/16/25
+## Revision 2.8 - 04/22/25
 
 **NOTES**
 1. Startup IF NOT ALREADY DONE!
