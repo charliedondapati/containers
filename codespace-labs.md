@@ -776,6 +776,8 @@ k apply -f role-binding.yaml
 k config set-context cs-user-context --cluster=minikube --user=cs-user
 ```
 
+<br>
+
 11. With the role and role binding in place, and the context updated, the service account should now be able to interact with the pods in the *default* namespace. Switch back to the context that authenticates as the service account user.
 
 ```
