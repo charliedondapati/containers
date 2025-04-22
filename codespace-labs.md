@@ -849,7 +849,7 @@ k -n kubernetes-dashboard create token admin-user
 
 7.	The dashboard for our cluster will now show. You'll probably first see a "404" message. This is because you don't have Kubernetes objects selected to look at.  You can select "All namespaces" at the top, choose a K8s objects on the left (such as "Pods"), and explore.
 
-![working in the dashboard](./images/cazclass21?raw=true "Working in the dashboard")
+![working in the dashboard](./images/cazclass21.png?raw=true "Working in the dashboard")
 
 <br> 
 
