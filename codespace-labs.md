@@ -273,7 +273,7 @@ had Kubernetes yaml files created for it.**
 
 <br><br>
 
-**NOTE**: *If you get to this point and something may have gone wrong in previous labs such that the images are not in the local registry, there is a script you can run *restore-images.sh* to recreate the images and push them automatically. You only need to do this IF something didn't go right with getting the images built or pushed in the previous labs and you don't want to backtrack.*
+**NOTE**: *If you get to this point and something may have gone wrong in previous labs such that the images are not in the local registry, there is a script you can run (**restore-images.sh**) to recreate the images and push them automatically. You only need to do this **IF something didn't go right with getting the images built or pushed in the previous labs** and you don't want to backtrack.*
 
 <br><br>
 
