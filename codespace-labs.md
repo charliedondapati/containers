@@ -770,7 +770,13 @@ k apply -f role-binding.yaml
 
 <br>
 
-10. With the role and role binding in place, the service account should now be able to interact with the pods in the *default* namespace. Switch back to the context that authenticates as the service account user.
+10. Now we need to update our context to pick up the changes.
+
+```
+k config set-context cs-user-context --cluster=minikube --user=cs-user
+```
+
+11. With the role and role binding in place, and the context updated, the service account should now be able to interact with the pods in the *default* namespace. Switch back to the context that authenticates as the service account user.
 
 ```
 k config use-context cs-user-context
@@ -778,7 +784,7 @@ k config use-context cs-user-context
 
 <br>
 
-11. Now you can try the command again to get the pods. Note that success here is NOT getting an error/forbidden message.
+12. Now you can try the command again to get the pods. Note that success here is NOT getting an error/forbidden message (meaning there won't be any pods showing, but you won't be getting a "Forbidden" message).
 
 ```
 k get pods
@@ -786,7 +792,7 @@ k get pods
 
 <br>
 
-12. In preparation for the next lab, switch back to the minikube context!
+13. In preparation for the next lab, switch back to the minikube context!
 
 ```
 k config use-context minikube
