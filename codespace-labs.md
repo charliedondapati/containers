@@ -288,7 +288,7 @@ Take a look at the yaml file there for the Kubernetes deployments and services. 
  See if you can identify the different services and deployments in the file.
 
  No changes need to be made.
- Return to this tab when done.
+ 
 
 <br>
 
@@ -379,7 +379,7 @@ things when we make a change to the configuration.
 
 <br>
 
-11.  In the right terminal, run a command to start a `watch` of pods in the roar namespace. The watch will continue running until we stop it.  
+11.  In an available terminal, run a command to start a `watch` of pods in the roar namespace. The watch will continue running until we stop it.  
 
 ```
 k get -n roar pods -w
