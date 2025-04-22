@@ -1,7 +1,7 @@
 # Containers Fundamentals
 ## An overview of Containers, Docker, and Kubernetes
 ## Session labs 
-## Revision 2.8 - 04/22/25
+## Revision 2.9 - 04/22/25
 
 **NOTES**
 1. Startup IF NOT ALREADY DONE!
@@ -909,11 +909,7 @@ rate(apiserver_request_total[1m])
 
 <br>
 
-15.	Finally, let’s take a look at Grafana. First you need to get the default Grafana password. You can get that by running the *./get-grafana-initial-pw.sh* script in the *monitoring* directory.
-
-<br>
-
-16.	 Then you can do a port forward for the "monitoring-grafana" service.  
+15.	Finally, let’s take a look at Grafana. Do a port forward for the "monitoring-grafana" service.  
 
 ```
 
@@ -923,19 +919,19 @@ k port-forward -n monitoring svc/monitoring-grafana :80  &
 
 <br>
 
-17.	Go to the browser tab. Login with username *admin* and the initial password (*prom-operator*).
+16.	Go to the browser tab. Login with username *admin* and the initial password (*prom-operator*).
 
 ![grafana login](./images/k8sdev28.png?raw=true "Grafana login")
 
 <br>
 
-18.	  Click on the magnifying glass for "search” (left red circle in figure below). This will provide you with a list of built-in graphs you can click on as demos and explore.
+17.	  Click on the magnifying glass for "search” (left red circle in figure below). This will provide you with a list of built-in graphs you can click on as demos and explore.
 
 ![grafana search](./images/k8sdev29.png?raw=true "Grafana search")  
 
 <br>
 
-19.	 Click on one of the links to view one of the demo graphs (such as the "Kubernetes / API server" one) shown in the figure below). You can then explore others by discarding/saving this one and going back to the list and selecting others.
+18.	 Click on one of the links to view one of the demo graphs (such as the "Kubernetes / API server" one) shown in the figure below). You can then explore others by discarding/saving this one and going back to the list and selecting others.
 
 ![grafana demo graph](./images/k8sdev29.png?raw=true "Grafana demo graph") 
 
