@@ -16,7 +16,7 @@ spec:
         app: roar-web
     spec:
       containers:
-      - image: localhost:5000/roar-web-v1
+      - image: localhost:5000/roar-web:v1
         imagePullPolicy: Always
         name: roar-web
         ports:
@@ -67,7 +67,7 @@ spec:
           value: root+1
         - name: MYSQL_USER
           value: admin
-        image: localhost:5000/roar-db-v1
+        image: localhost:5000/roar-db:v1
         imagePullPolicy: Always
         name: mysql
         ports:
